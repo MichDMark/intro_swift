@@ -56,3 +56,34 @@ let someNumber =   000007.540
 //puedes colocar separadados de guion bajo para colocar numeros grandes
 let oneMillon = 1_000_000
 let justMoreThanAMillon = 1_000_000.000_000_1
+
+
+//casting de datos
+
+let twoThousand: UInt16 = 2000
+let one: UInt8 = 1
+
+//no es posible sumar 2 tipos de datos diferentes
+//let twoThousandOne = twoThousand + one
+
+
+//haciendo casting al entero de 8 bits para poder realizar operacion
+let twoThousandOne = twoThousand + UInt16(one)
+
+let three = 3
+let decimalNumber = 0.14159
+
+//no puede realizar operacion, es necesario hacer casting
+//let piNum = three + decimalNumber
+
+let piNum = Float(three) + Float(decimalNumber)
+
+
+
+//type alias
+// renombrar un tipo de dato para usarlo de manera sencilla
+
+//cada que queremos usar un entero de 16 bits usamos audioSample
+typealias audioSample = UInt16
+
+var maxAmplitude = audioSample.max
