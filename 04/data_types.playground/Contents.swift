@@ -49,3 +49,26 @@ print("El codigo de error es: \(http404Error.0) y el mensaje es: \(http404Error.
 let http200Status = (statusCode: 200, description: "OK")
 //imprimir usando sus alias
 print("El codigo del estado es \(http200Status.statusCode) y el mensajes es: \(http200Status.description) \n")
+
+
+//desafio de tuplas
+//crear tupla con edad y datos y usarla para imprimir
+let michID = (name: "Mich", nickName: "DMark", edad: 31)
+print("Hola soy \(michID.name), mi usuario es \(michID.nickName) y mi edad es \(michID.edad)\n")
+
+
+// valores opcionales y Nil, no existe NULL en swift
+
+let possibleAge = "31"
+
+let covertedAge = Int8(possibleAge) //esto es un entero opcional Int?
+// es opcional pues la conversion no siempre sera posible
+
+//se declara con ? si el tipo de dato sera opcional
+//que pueda tomar un valor entero o pueda ser nulo
+var serverResponseCode: Int? = 404
+serverResponseCode = nil //si se declara sin ?, no podria dejarse nulo
+
+
+
+
