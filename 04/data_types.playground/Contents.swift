@@ -61,7 +61,7 @@ print("Hola soy \(michID.name), mi usuario es \(michID.nickName) y mi edad es \(
 
 let possibleAge = "31"
 
-let covertedAge = Int8(possibleAge) //esto es un entero opcional Int?
+let convertedAge = Int8(possibleAge) //esto es un entero opcional Int?
 // es opcional pues la conversion no siempre sera posible
 
 //se declara con ? si el tipo de dato sera opcional
@@ -69,6 +69,70 @@ let covertedAge = Int8(possibleAge) //esto es un entero opcional Int?
 var serverResponseCode: Int? = 404
 serverResponseCode = nil //si se declara sin ?, no podria dejarse nulo
 
+//declarar el dato opcional
+var surveyAnswer : String?
+surveyAnswer = "42"
+//print(surveyAnswer) //da un warning por el cambio de dato
 
 
+//uso de fuerza bruta para usar datos opcionales
+//el force unwrapping solo se debe hacer si comprobamos que
+//la variable opcional no tiene un valor nulo
 
+if convertedAge != nil
+{
+    print("\nla edad del usuario no es nula, es: \(convertedAge!)")
+    //el ! despues de la variable es el force unwrapping
+    //sirve para forzar la conversion de una variable opcional a varible regular
+}
+else
+{
+    print("\nla edad del usuario es nula")
+}
+
+
+// optional binding
+/*
+para no usar fuerza bruta, creamos una serie de variables que comprueban
+un casting exitoso, un variable opcional, una no opcional del mismo tipo y un casteo entre ellas para comprobar que el dato no es nulo
+ */
+
+//comprobamos si surveyAnswer no es nulo
+
+//el if se lee como:
+//si puedo crear una constante actualAnswer apartir de surveyAnswer
+//entonces entra al if
+if let actualAnswer = surveyAnswer
+{
+    //si entra aqui es que surveyAnswer no es nulo
+    print("\nel string surveyAnswer tiene el valor de: \(actualAnswer) \n")
+}
+else
+{
+    //si llega aqui es que surveyAnswer fue nulo
+    print("\n el string surveyAnswer es nil...\n")
+}
+
+
+// optional binding en cadena
+//comprueba que no sean nulos y luego los usa en una condicion
+
+//swift permite anidar varios if con comas
+
+if let firstNumber = Int("4"),
+   let secondNumber = Int("42"),
+   firstNumber < secondNumber && secondNumber<100
+{
+    print("\(firstNumber) < \(secondNumber) <100")
+}
+
+// unwrap implicito
+
+let possibleString: String? = "Un string opcional"
+
+//nunca hacerlo asi sin comprobar con algun metodo
+let forcedString: String = possibleString!
+
+//forma correcta
+let assumedString: String! = "Un string unwrapped de forma implicita a partir de un optional"
+let implicitString : String = assumedString
