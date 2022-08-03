@@ -146,3 +146,56 @@ range.contains(7)
 range.contains(4)
 range.contains(-7)
 
+// OPERADORES LOGICOS
+
+//definir una variable para permitir entrada
+let allowEntry = false
+
+//if allowEntry esto se lee como: si permitimos la entrada, haz lo de corchetes
+
+//operador Not
+//se lee, Si No permitimos la entrada, has lo que esta en corchetes
+// es mas facil leer asi
+if !allowEntry
+{
+   print("acceso denegado")
+}
+
+//operador and
+let enterDoorCode = true
+let passRetinaScan = false
+
+if enterDoorCode && passRetinaScan //operador and
+{
+  print("bienvenido a la empresa")
+}
+else
+{
+    print("acceso denegado")
+}
+
+//operador OR
+let hasMoney = true
+let hasInvitation = false
+
+if hasMoney || hasInvitation
+{
+    print("bienvenido a la fiesta")
+}
+else
+{
+    print("no eres bienvenido aqui")
+}
+
+// usar operadores combinados
+//no es necesario el parentesis, se usa para visualizacion
+if (enterDoorCode && passRetinaScan) || hasMoney || hasInvitation
+{
+    print("has entrado")
+}
+else
+{
+    print("igual no has podido entrar")
+}
+
+
