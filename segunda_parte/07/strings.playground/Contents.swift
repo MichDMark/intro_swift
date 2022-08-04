@@ -105,3 +105,106 @@ var message = "El produto de \(multiplier) x3.5 da \(Double(multiplier)*3.5)"
 //no se puede usar el metodo append al crear la variable
 //se debe usar cuando la variable ya esta creada
 message.append(exclamationMark)
+
+//INDICES DE STRINGS
+
+let greeting = "Hola, ¿que tal?"
+greeting[greeting.startIndex] //primer caracter de la cadena
+//greeting[greeting.endIndex]
+//no se puede acceder directamente al ultimo porque se pasa en el contador
+
+//usamos los metodos del index y accedemos 1 antes del final
+//recordar que la cuenta empieza en 0 por eso debe hacerse asi
+greeting[greeting.index(before: greeting.endIndex)]
+
+//acceder al segundo elemento
+greeting[greeting.index(after: greeting.startIndex)]
+
+
+//aceder a todos los datos
+for idx in greeting.indices
+{
+    print("\(greeting[idx]) ", terminator:"")  //quita el salto de linea
+}
+
+var welcome = "Hola"
+
+//insertar elementos
+welcome.insert("!", at: welcome.endIndex) //inserta al final del string
+
+//inserta un string nuevo antes del ultimo elmento del string que ya existe
+
+welcome.insert(contentsOf: " soy Mich", at: welcome.index(before: welcome.endIndex))
+
+//remover elementos
+
+//remueve el ultimo elemento
+welcome.remove(at: welcome.index(before: welcome.endIndex))
+welcome //queda el string sin el ultimo valor
+
+//acota un rango de 6 elementos y los corta del final
+let range = welcome.index(welcome.endIndex, offsetBy: -6)..<welcome.endIndex
+welcome.removeSubrange(range)
+welcome
+
+//SUBSTRINGS
+//el substring solo es un trozo de memoria del string original
+//sacar un pedazo de un string
+greeting
+
+//buscar la coma en greeting
+//usamos el operador ?? por si no existe el caracter en la cadena
+let index = greeting.firstIndex(of: ",") ?? greeting.endIndex
+
+//crea un substring desde el inicio hasta donde encuentra el caracter guardado en index
+let firstPart = greeting[..<index]
+//hacer un string de un substring
+let newString = String(firstPart)
+
+
+//PREFIJOS Y SUFIJOS
+
+let newGreeting = "Hola, soy Mich DMark"
+
+//entrega true o false si cumple la pregunta
+newGreeting.hasPrefix("Hola")
+newGreeting.hasSuffix("!")
+
+let collection = [ "act 1 scene 1", "act 1 scene 2", "act 1 scene 3",
+                   "act 2 scene 1", "act 2 scene 2", "act 2 scene 3",
+                   "act 3 scene 1", "act 3 scene 2"
+]
+
+//cuantas escenas tiene el acto 1, contamos cuantos strings del array empiezan por el act 1
+
+var act1Count = 0
+for scene in collection
+{
+    if scene.hasPrefix("act 1")
+    {
+        act1Count += 1
+    }
+}
+print("\nel numero de escenas en el acto 1 es: \(act1Count)")
+
+//REPRESENTACIONES UNICODE
+
+let ghost = "¡¡Fantasma!! 👻"
+
+for codeUnit in ghost.utf8
+{
+    print(codeUnit, terminator: " ")
+}
+
+print("\n")
+for codeUnit in ghost.utf16
+{
+    print(codeUnit, terminator: " ")
+}
+
+print("\n")
+
+for codeUnit in ghost.unicodeScalars
+{
+    print(codeUnit, terminator: " ")
+}
