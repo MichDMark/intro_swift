@@ -193,3 +193,109 @@ print("someInt vale \(someInt) y otherInt vale \(otherInt)")
 //porque estamos usando la referencia del valor
 swapTwoInts(&someInt, &otherInt)
 print("someInt vale \(someInt) y otherInt vale \(otherInt)")
+
+
+// FUNCIONES COMO TIPO DE DATO
+
+
+
+func addTwoInts(_ a: Int, _ b: Int) -> Int
+{
+    return a+b
+} //el tipo de dato de esta funcion es la tupla de dos enteros y un entero de salida
+// (Int, Int) -> Int
+
+func multplyTwoInts(_ a: Int, _ b: Int) -> Int
+{
+    return a*b
+} // (Int, Int) -> Int
+
+func printHW()
+{
+    print("Hello")
+} //tambien es un tipo de dato, solo que es vacio de entrada y vacio de salida
+//tipo void
+
+//cualquier funcion puede ser creada como variable
+
+var mathFunction: (Int, Int) -> Int = addTwoInts
+
+//se puede llamar a a la funcion mathfunction pero que acepta parametros como su fuera una funcion
+
+mathFunction(4,5)
+
+
+//por lo tanto puedes tomar una funcion y pasarle como parametro otra funcion
+
+//uno de los parametros de entrada de la funcion, es una funcion
+func printMathResult(_ mathFunc:(Int, Int) -> Int,_ a: Int, _ b: Int)
+{
+    print("Resultado \(mathFunc(a,b))")
+}
+
+printMathResult(multplyTwoInts, 5, 9)
+
+
+//hacer que una funcion devuelva como resultado de su funcion, otra funcion
+
+//funcion paso adelante, suma 1 valor
+func stepForward(_ input: Int) -> Int
+{
+    return input + 1
+}
+
+func stepBackward(_ input: Int) -> Int
+{
+    return input - 1
+}
+
+//en la salida de esta funcion es otra funcion, despues de la primera flecha
+//sale una funcion que ingresa un entero y saca un entero
+func chooseStepFunction(backward: Bool) -> (Int) -> Int
+{
+    return backward ? stepBackward : stepForward //operador ternario, pero se puede usar el if
+}
+
+var value = 7
+//quiero incrementar o decrementar esa variable para que se acerque a cero
+
+let moveNearerZero = chooseStepFunction(backward: value > 0)
+
+while value != 0
+{
+    print("\(value)...")
+    value = moveNearerZero(value)
+}
+print("CEROOOOOO!!!")
+
+
+//FUNCIONES ANIDADAS, CUANDO UNA FUNCION ESTA DECLARADA DENTRO DE OTRA Y NO DE MANERA GLOBAL
+
+//hacer el ejemplo anterior de elegir la funcion, pero declaradas dentro de la funcion de seleccion
+//y no de manera global
+
+func eligeFuncion(backward: Bool) -> (Int) -> Int
+{
+    func stepForward(_ input: Int) -> Int
+    {
+        return input + 1
+    }
+
+    func stepBackward(_ input: Int) -> Int
+    {
+        return input - 1
+    }
+    
+    return backward ? stepBackward : stepForward //operador ternario, pero se puede usar el if
+}
+
+var valorDePrueba = 9
+
+let mueveACero = eligeFuncion(backward: valorDePrueba > 0)
+
+while valorDePrueba != 0
+{
+    print("\(valorDePrueba)...")
+    valorDePrueba = mueveACero(valorDePrueba)
+}
+print("CEROOOOOO!!!")
