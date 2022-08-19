@@ -84,3 +84,35 @@ currentDirection = .south
 
 print(currentDirection)
 print(oldDirection) //al modificar currentDirection, oldDirection no se modifica, son copias independientes
+
+
+// LAS CLASES SON TIPOS DE DATOS REFERENCIADOS
+// SI TU COPIAS LOS DATOS DE UN OBJETO, LA COPIA COPIA SOLO LA REFERENCIA Y SI MODIFICAS EL OBJETO SE MODIFICAN LAS COPIAS
+
+//usando la clase videomode
+
+let tenEighty = VideoMode()
+tenEighty.resolution = hd
+tenEighty.interlaced = true
+tenEighty.name = "1080i"
+tenEighty.frameRate = 25.0
+
+//si creas un objeto como una constante let, es constante en su espacio de memoria, pero se puede reescrbir sus atributos
+
+
+let alsoTenEighty = tenEighty //creamos una copia del objeto tenEighty
+alsoTenEighty.frameRate = 30.0 //modificamos uno de los atributos
+
+tenEighty //el framerate fue modificado en la copia por lo tanto en el objeto original tambien se modifica
+
+// si quieres comparar dos objetos
+if tenEighty === alsoTenEighty //los objetos se comparan con 3 =
+{
+    print("son el mismo objeto")
+}
+else
+{
+    print("son diferentes")
+}
+
+
