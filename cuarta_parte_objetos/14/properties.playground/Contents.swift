@@ -210,3 +210,66 @@ var playerOneLife = LifePlayer()
 playerOneLife.life = 123
 
 playerOneLife.life = -9
+
+
+//TYPE PROPERTIES
+
+//las computed properties son 1 por cada instancia, es decir cada objeto tendra la suya
+
+//a veces vamos a necesitar una variable que sea compartida por varias instancias de una misma clase/struct o enum
+
+// static es una variable comun a todos los objetos que son instanciados de esa clase
+
+// para las computed properties que necesiten ser staticas se tiene que usar la palabra reservada class
+
+
+struct SomeStruct
+{
+    var counter = 0
+    static var storedTypeProperty = "Some Value" //esta es una variable comun a todas las instancias
+    static var computedTypeProperty: Int
+    {
+        return 1
+    }
+}
+
+var instanceStr = SomeStruct() //no se muestran las statics porque son comunes de todas las instancias
+
+var otherInstanceStr = SomeStruct() //creamos otra instancia para comprobar que no es posible
+
+// la unica forma de acceder a las statics es mediante la propia estrcutura/ clase, no mediante las instancias
+
+SomeStruct.computedTypeProperty
+
+//ejemplo con un enum
+
+enum SomeEnum
+{
+    static var storedTypeProperty = "SomeValue"
+    static var computedTypePropoerty: Int
+    {
+        return 5
+    }
+}
+
+//acedemos a los statics desde el enum directamente
+SomeEnum.storedTypeProperty
+
+
+//ejemplo mediante clases, se hace de la misma manera
+
+class SomeClass
+{
+    static var storedTypeProperty = "Some Value"
+    static var computedTypeProperty: Int
+    {
+        return -9
+    } //esta no puede ser modificada por ninguna clases hija o padre cuando se declara como static
+    
+    
+    class var OverrideableComputedTypeProperty: Int
+    {
+        return 1089
+    } // las que se declaran como class en vez de static, van a poder ser modificas en las herencias por padres o hijos
+}
+// en estos casos se debe poner mucha atencion a las computed properties por las subclases
