@@ -126,5 +126,5 @@ for row in 0..<mat.rows
     {
         print(mat[row, col], separator: "", terminator: " ")
     }
-    print("")
+    print("") //salto de fila
 }
